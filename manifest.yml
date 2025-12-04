@@ -1,0 +1,13 @@
+---
+applications:
+  - name: zquzsuba10 # アプリ名（自由）
+    memory: 512M # 128M だとキツいので 512M 推奨
+    disk_quota: 512M
+    buildpacks:
+      - python_buildpack # Python Buildpack
+    host: zquzsuba10 # URL のサブドメイン部分
+    # domain: cfapps.us10-001.hana.ondemand.com # ★ cfapps を忘れずに！
+    domain: cfapps.ap21.hana.ondemand.com
+
+    command: python app.py # app.py の __main__ で uvicorn 起動 
+

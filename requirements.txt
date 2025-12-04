@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+requests
+#asynico
+httpx
+hdbcli
+python-dotenv
+datetime

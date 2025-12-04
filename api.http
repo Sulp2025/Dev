@@ -1,0 +1,77 @@
+### 1. Health Check
+GET https://zquzsuba10.cfapps.ap21.hana.ondemand.com/health
+
+###
+
+### 2. Domestic_amount - 画面带 Rate（优先用 F_Rate）
+POST https://zquzsuba10.cfapps.ap21.hana.ondemand.com/Domestic_amount
+Content-Type: application/json
+
+{
+  "requestBody": {
+    "Form": {
+      "F_meisai": [
+        {
+          "F_Doc_curr_amt": 10000
+        }
+      ],
+      "F_Currency": "USD",
+      "F_Rate": 147.27
+    },
+    "case": {
+      "extensions": {
+        "PaymentDate": "2025-12-03"
+      }
+    }
+  }
+}
+
+###
+
+### 3. Domestic_amount - 不带 Rate（让 API 去 HANA 查汇率）
+POST https://zquzsuba10.cfapps.ap21.hana.ondemand.com/Domestic_amount
+Content-Type: application/json
+
+{
+  "requestBody": {
+    "Form": {
+      "F_meisai": [
+        {
+          "F_Doc_curr_amt": 10000
+        }
+      ],
+      "F_Currency": "US ドル",
+      "F_Rate": 0
+    },
+    "case": {
+      "extensions": {
+        "PaymentDate": "2025-12-03"
+      }
+    }
+  }
+}
+
+###
+
+### 4. Domestic_amount - 用日文通货 + 斜杠日期（测试 normalize）
+POST https://zquzsuba10.cfapps.ap21.hana.ondemand.com/Domestic_amount
+Content-Type: application/json
+
+{
+  "requestBody": {
+    "Form": {
+      "F_meisai": [
+        {
+          "F_Doc_curr_amt": 10000
+        }
+      ],
+      "F_Currency": "US ドル",
+      "F_Rate": 0
+    },
+    "case": {
+      "extensions": {
+        "PaymentDate": "2025/12/3"
+      }
+    }
+  }
+}
